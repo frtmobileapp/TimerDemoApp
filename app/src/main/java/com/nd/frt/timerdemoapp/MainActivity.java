@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         mTvCount.setText(String.valueOf(mTime));
                         mTime--;
-                        if (mTime == 0) {
+                        if (mTime == -1) {
                             return;
                         }
                         handler.postDelayed(this, 1000);
@@ -57,12 +57,13 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnRxJava).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mTvCount.setText("10");
                 mDisposable = Flowable.create(new FlowableOnSubscribe<Integer>() {
                     @Override
                     public void subscribe(FlowableEmitter<Integer> emitter) throws Exception {
                         for (int i = 0; i < COUNT_DOWN; i++) {
                             Thread.sleep(1000);
-                            emitter.onNext(COUNT_DOWN - i);
+                            emitter.onNext(COUNT_DOWN - i-1);
                         }
                         emitter.onComplete();
                     }
@@ -99,11 +100,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            MainActivity mainActivity = mWeakReference.get();
+            if (mainActivity != null) {
+                mainActivity.mTvCount.setText("10");
+            }
+        }
+
+        @Override
         protected Integer doInBackground(Void... voids) {
             try {
                 for (int i = 0; i < COUNT_DOWN; i++) {
                     Thread.sleep(1000);
-                    publishProgress(COUNT_DOWN - i);
+                    publishProgress(COUNT_DOWN - i-1);
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -129,4 +139,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 }
