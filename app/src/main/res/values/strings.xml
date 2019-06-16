@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">TimerDemoApp</string>
+    <string name="handler">Handler</string>
+    <string name="asyncTask">AsyncTask</string>
+    <string name="rxJava">RxJava</string>
 </resources>
