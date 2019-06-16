@@ -9,23 +9,23 @@
     <TextView
         android:id="@+id/tvCount"
         android:layout_width="match_parent"
-        android:layout_height="100dp" />
+        android:layout_height="120dp" />
     <Button
         android:id="@+id/btnHandler"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:text="@string/handler"
         android:textSize="20sp" />
     <Button
         android:id="@+id/btnAsyncTask"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:text="@string/asyncTask"
-        android:textSize="20sp" />
+        android:textSize="25sp" />
     <Button
         android:id="@+id/btnRxJava"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:text="@string/rxJava"
-        android:textSize="20sp" />
+        android:textSize="25sp" />
 </LinearLayout>
